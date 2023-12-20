@@ -22,7 +22,7 @@ ENV RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 
 # Create Colcon workspace with external dependencies
 RUN mkdir -p /underlay_ws/src
-WORKDIR /robot_ws/src
+WORKDIR /underlay_ws/src
 COPY dependencies.repos .
 RUN vcs import < dependencies.repos
 
@@ -50,7 +50,7 @@ RUN mkdir -p /overlay_ws/src
 WORKDIR /overlay_ws
 # COPY ./tb3_autonomy/ ./src/tb3_autonomy/
 # COPY ./tb3_worlds/ ./src/tb3_worlds/
-RUN source /robot_ws/install/setup.bash \
+RUN source /underlay_ws/install/setup.bash \
  && rosdep install --from-paths src --ignore-src --rosdistro ${ROS_DISTRO} -y \
  && colcon build --symlink-install
 
