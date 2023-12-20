@@ -52,3 +52,9 @@ services:
       - ./.colcon/log/:/overlay_ws/log/:rw
     user: ${USERNAME:-devuser}
     command: sleep infinity
+
+
+  start_imu:
+     extends: overlay
+     command: >
+      ros2 launch mpu6050driver mpu6050driver_launch.py 
